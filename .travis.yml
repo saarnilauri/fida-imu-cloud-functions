@@ -1,0 +1,18 @@
+notifications:
+  email: false
+language: node_js
+node_js: 7
+sudo: false
+cache: yarn
+before_install:
+- tar -xvzf firebase.settings.tar.gz
+- mv service-account-credentials.json functions/.
+- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
+- export PATH=$HOME/.yarn/bin:$PATH
+install:
+- cd functions && yarn install
+deploy:
+  skip_cleanup: true
+  provider: firebase
+  token:
+    secure: kRsjCrcEbM10Al1MJvi1pfCF3U/9Mv3ztYoOcVCpdeNjuN10Ekr2qWmYj8g+YD//PbnbTnPRSg63AZRVHeTWCs44RzXpv0BcHCugRO/LM4jzXB9AKSV2vdVZCdk/myuSaoOq8THiBKi9vi4XkaitryGfbLe/b/WgAsAph8Yr/iJoJq/j8C8KibGvhWCmPHsB7cwjSacqWoEjz89Qy0P3GXsKr1VYIXo6bPbG2htup6DroMz6KBWC6bF0I6KwFTqh5ehhtwIH6VGQ2QfEB7isCWG3z832bVkFH9sVF0X3+yiMRLP4ybPmJbg8Eq6xDSZyUkh6OUyXcNWbT1/VuMoyqrRrrH15xanlxHqpB/ocVkVezj6G8OQMYo4TsMsX6Fho2yLC/CJCAwluFQKmSJzMAEQVKhfO0/cYs7Jb6HALUBsd9ICLNF4AlwpqO21WKnZkP+qln4TDrBoD3JZoAKPsZUa7eZDYvacC4Fry0NjSCLscLt+GKoSk8McnN3ecxt5ZyYtOyjAT6cA8uPMXnSm3JRgr21T4WR5cKdUhKOzGmDoQkDR5jDM+iZmV04n6U7cSgPenfwPgA11xPyYAysB7Mv05cy/Xc26u5bNQTBphHKoM0eedzSLLIdsPbmNVPNwjTI4nJZx782T8RD6fo3kXZxtJPEo1SkaDXgohxVu7cTY=
